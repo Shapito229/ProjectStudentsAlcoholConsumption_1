@@ -59,7 +59,7 @@ import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 from scipy.stats import pearsonr
-import matplotlib.pyplot as plt
+import matplotlib.plotly_chart as plt
 from collections import Counter
 import itertools
 #import telebot
@@ -188,7 +188,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
 bargap=0.2)
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # In[93]:
@@ -204,7 +204,7 @@ fig.update_layout(
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0))
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # In[94]:
@@ -226,7 +226,7 @@ fig.update_layout(
     )
 fig.update_xaxes(visible=False)
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # In[95]:
@@ -256,7 +256,7 @@ fig.update_layout(
 #fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
 #plt.fig(color='green')
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # ## More detailed overview
@@ -311,7 +311,7 @@ fig.update_layout(barmode='stack',
                   legend=dict(x=.5, xanchor="center", orientation="h"),
                   margin=dict(l=0, r=0, t=30, b=0))
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # The resulting graph shows that alcohol consumption increases with the increase in the number of parties with friends. This may be due to the fact that students like to drink in the company, and accordingly fall into the drinking company, with which they often go to bars and clubs.
@@ -350,7 +350,7 @@ fig.update_layout(title="The consumption of the alcohol of men and women",
                   legend=dict(x=.5, xanchor="center", orientation="h"),
                   margin=dict(l=0, r=0, t=30, b=0))
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # The resulting graph confirms my assumption. This may be related to the biological and psychological characteristics of people of different sexes.
@@ -413,7 +413,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
 bargap=0.2)
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.
@@ -454,7 +454,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
 bargap=0.2)
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # This correlation quite logical, the more you study => the less free time => the less time for partying with friends. All other correlations are insignificant.
@@ -512,7 +512,7 @@ fig.update_layout(
     legend=dict(x=.5, xanchor="center", orientation="h"),
 )
 #fig.show()
-st.pyplot(fig)
+st.plotly_chart(fig)
 
 
 # We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.
