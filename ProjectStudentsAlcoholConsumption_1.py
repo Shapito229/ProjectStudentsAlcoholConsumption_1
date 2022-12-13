@@ -78,7 +78,7 @@ import streamlit as st
 
 
 alcohol = pd.DataFrame(
-    pd.read_csv('\student_mat.csv', sep=','))
+    pd.read_csv('student_mat.csv', sep=','))
 st.write(alcohol)
 
 st.title("Contest from streamlit")
