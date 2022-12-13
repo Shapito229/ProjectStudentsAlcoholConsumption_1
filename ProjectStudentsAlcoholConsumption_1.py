@@ -58,7 +58,7 @@ import plotly
 import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
-from scipy.stats import pearsonr
+import scipy.stats
 import matplotlib.plotly_chart as plt
 from collections import Counter
 import itertools
