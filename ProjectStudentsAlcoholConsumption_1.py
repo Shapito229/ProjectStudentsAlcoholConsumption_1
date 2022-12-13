@@ -284,10 +284,10 @@ print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 # In[97]:
 
 
-data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
-display(data_corr.corr())
-pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
-plt.show()
+#data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
+#display(data_corr.corr())
+#pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
+#plt.show()
 
 # Hooray! There is a correlation and it is quite strong, let's visualize it!
 
@@ -424,10 +424,10 @@ print(np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1])
 # In[108]:
 
 
-data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
-display(data_corr.corr())
-pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
-plt.show()
+#data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+#display(data_corr.corr())
+#pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
+#plt.show()
 
 # Indeed, there is a rather strong negative correlation. Let's look at the visualization.
 
