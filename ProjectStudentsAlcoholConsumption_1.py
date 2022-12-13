@@ -49,7 +49,7 @@
 # !pip install scipy
 # !pip install pytelegrambotapi
 # !pip install python-telegram-bot
-#get_ipython().system('pip install streamlit')
+# get_ipython().system('pip install streamlit')
 
 import pandas as pd
 import numpy as np
@@ -58,17 +58,18 @@ import plotly
 import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
-#import scipy.stats
-#import matplotlib.plotly_chart as plt
+# import scipy.stats
+# import matplotlib.plotly_chart as plt
 from collections import Counter
 import itertools
-#import telebot
-#from telebot import types
+# import telebot
+# from telebot import types
 import logging
 import streamlit as st
-#from telegram.ext import (CommandHandler, ConversationHandler, Filters,
+
+# from telegram.ext import (CommandHandler, ConversationHandler, Filters,
 #                          MessageHandler, Updater)
-#from telegram import ReplyKeyboardMarkup
+# from telegram import ReplyKeyboardMarkup
 
 
 # ### Let's see what data we will work with.
@@ -76,7 +77,8 @@ import streamlit as st
 # In[83]:
 
 
-alcohol = pd.DataFrame(pd.read_csv('/content/student-mat.csv', sep=','))
+alcohol = pd.DataFrame(
+    pd.read_csv('C:\Users\Пользователь\Desktop\профи\Даниил_Проект_Алкоголь\student-mat.csv', sep=','))
 alcohol
 
 st.title("Contest from streamlit")
@@ -95,7 +97,6 @@ st.markdown("Finaly")
 
 alcohol.info()
 
-
 # ## Data transformation
 
 # ##### Here I am adding 3 columns, with each  I will work with in the futher.
@@ -106,62 +107,57 @@ alcohol.info()
 # In[85]:
 
 
-alcohol = alcohol.assign(Alc = (alcohol.Dalc + alcohol.Walc)/2)
-alcohol = alcohol.assign(AllStudytime = (alcohol.studytime + alcohol.traveltime*0.1))
+alcohol = alcohol.assign(Alc=(alcohol.Dalc + alcohol.Walc) / 2)
+alcohol = alcohol.assign(AllStudytime=(alcohol.studytime + alcohol.traveltime * 0.1))
 alcohol.sex = alcohol.sex.apply([lambda x: 0 if x == 'F' else 1])
 pd.set_option('display.max_columns', None)
 alcohol
 
-
-# ## Descriptive statistics 
+# ## Descriptive statistics
 
 # In[86]:
 
 
 print(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
 
-
 # In[87]:
 
 
-print('Number of girls:', alcohol[alcohol['sex']==0].shape[0])
-print('Number of boys:', alcohol[alcohol['sex']==1].shape[0])
-
+print('Number of girls:', alcohol[alcohol['sex'] == 0].shape[0])
+print('Number of boys:', alcohol[alcohol['sex'] == 1].shape[0])
 
 # In[88]:
 
 
-print('Number of people with internet at home:', alcohol[alcohol['internet']=='yes'].shape[0])
-print('Number of people without internet at home:', alcohol[alcohol['internet']=='no'].shape[0])
-
+print('Number of people with internet at home:', alcohol[alcohol['internet'] == 'yes'].shape[0])
+print('Number of people without internet at home:', alcohol[alcohol['internet'] == 'no'].shape[0])
 
 # In[89]:
 
 
-print('Number of people of age 15:', alcohol[alcohol['age']==15].shape[0])
-print('Number of people of age 16:', alcohol[alcohol['age']==16].shape[0])
-print('Number of people of age 17:', alcohol[alcohol['age']==17].shape[0])
-print('Number of people of age 18:', alcohol[alcohol['age']==18].shape[0])
-print('Number of people of age 19:', alcohol[alcohol['age']==19].shape[0])
-print('Number of people of age 20:', alcohol[alcohol['age']==20].shape[0])
-print('Number of people of age 21:', alcohol[alcohol['age']==21].shape[0])
-print('Number of people of age 22:', alcohol[alcohol['age']==22].shape[0])
-
+print('Number of people of age 15:', alcohol[alcohol['age'] == 15].shape[0])
+print('Number of people of age 16:', alcohol[alcohol['age'] == 16].shape[0])
+print('Number of people of age 17:', alcohol[alcohol['age'] == 17].shape[0])
+print('Number of people of age 18:', alcohol[alcohol['age'] == 18].shape[0])
+print('Number of people of age 19:', alcohol[alcohol['age'] == 19].shape[0])
+print('Number of people of age 20:', alcohol[alcohol['age'] == 20].shape[0])
+print('Number of people of age 21:', alcohol[alcohol['age'] == 21].shape[0])
+print('Number of people of age 22:', alcohol[alcohol['age'] == 22].shape[0])
 
 # In[90]:
 
 
-alcohol_anal = alcohol[['age', 'Alc','G3','famrel','freetime']].describe().drop(['25%','50%','75%'])
+alcohol_anal = alcohol[['age', 'Alc', 'G3', 'famrel', 'freetime']].describe().drop(['25%', '50%', '75%'])
 alcohol_anal
-
 
 # In[91]:
 
 
-alcohol_med = [['median', alcohol['age'].median(), alcohol['Alc'].median(), alcohol['G3'].median(), alcohol['famrel'].median(), alcohol['freetime'].median()]]
+alcohol_med = [
+    ['median', alcohol['age'].median(), alcohol['Alc'].median(), alcohol['G3'].median(), alcohol['famrel'].median(),
+     alcohol['freetime'].median()]]
 alcohol_mediana = pd.DataFrame(alcohol_med, columns=['value', 'age', 'Alc', 'G3', 'famrel', 'freetime'])
 alcohol_mediana
-
 
 # ### Let's look at some average values from the dataset.
 # 1. We can see that the average age of respondents is 17 years old. There is also a significant deviation of 1.28 points, which means that we also have a lot of 16 and 18-year-old students (we will check this later).
@@ -178,86 +174,90 @@ alcohol_mediana
 
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=alcohol['Alc'].value_counts().sort_index().index, y=alcohol['Alc'].value_counts().sort_index()))
+fig.add_trace(
+    go.Scatter(x=alcohol['Alc'].value_counts().sort_index().index, y=alcohol['Alc'].value_counts().sort_index()))
 fig.update_layout(
     title="Alcohol consumption",
-    title_x = 0.5,
+    title_x=0.5,
     xaxis_title="Frequency of alcohol consumption by respondents",
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-bargap=0.2)
-#fig.show()
+    bargap=0.2)
+# fig.show()
 st.plotly_chart(fig)
-
 
 # In[93]:
 
 
 df = alcohol.sex
-number_of_people_with_and_without_internet = [alcohol[alcohol['internet']=='yes'].shape[0], alcohol[alcohol['internet']=='no'].shape[0]]
-names_of_the_values = ['Number of people with internet at home','Number of people without internet at home']
-fig = px.pie(df, values = number_of_people_with_and_without_internet, names = names_of_the_values)
+number_of_people_with_and_without_internet = [alcohol[alcohol['internet'] == 'yes'].shape[0],
+                                              alcohol[alcohol['internet'] == 'no'].shape[0]]
+names_of_the_values = ['Number of people with internet at home', 'Number of people without internet at home']
+fig = px.pie(df, values=number_of_people_with_and_without_internet, names=names_of_the_values)
 fig.update_layout(
     title="Distribution of people by internet connection",
-    title_x = 0.5,
+    title_x=0.5,
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0))
-#fig.show()
+# fig.show()
 st.plotly_chart(fig)
-
 
 # In[94]:
 
 
 data = alcohol.age
-number_of_people_of_age = [alcohol[alcohol['age']==15].shape[0], alcohol[alcohol['age']==16].shape[0], alcohol[alcohol['age']==17].shape[0], alcohol[alcohol['age']==18].shape[0], alcohol[alcohol['age']==19].shape[0], alcohol[alcohol['age']==20].shape[0], alcohol[alcohol['age']==21].shape[0], alcohol[alcohol['age']==22].shape[0]]
-names_of_the_values = ['Number of people of age 15','Number of people of age 16', 'Number of people of age 17','Number of people of age 18', 'Number of people of age 19','Number of people of age 20', 'Number of people of age 21','Number of people of age 22']
-fig = px.bar(data, y= number_of_people_of_age,x = names_of_the_values,  color = names_of_the_values)
+number_of_people_of_age = [alcohol[alcohol['age'] == 15].shape[0], alcohol[alcohol['age'] == 16].shape[0],
+                           alcohol[alcohol['age'] == 17].shape[0], alcohol[alcohol['age'] == 18].shape[0],
+                           alcohol[alcohol['age'] == 19].shape[0], alcohol[alcohol['age'] == 20].shape[0],
+                           alcohol[alcohol['age'] == 21].shape[0], alcohol[alcohol['age'] == 22].shape[0]]
+names_of_the_values = ['Number of people of age 15', 'Number of people of age 16', 'Number of people of age 17',
+                       'Number of people of age 18', 'Number of people of age 19', 'Number of people of age 20',
+                       'Number of people of age 21', 'Number of people of age 22']
+fig = px.bar(data, y=number_of_people_of_age, x=names_of_the_values, color=names_of_the_values)
 fig.update_layout(
     title="Distribution of people by age",
-    title_x = 0.5,
-    #xaxis.set_visible(False),
+    title_x=0.5,
+    # xaxis.set_visible(False),
     xaxis_title="Age of the respondents",
     yaxis_title="Number of the respondents",
-    legend=dict(x=.5, xanchor="center", orientation="h", bgcolor = 'aqua'),
+    legend=dict(x=.5, xanchor="center", orientation="h", bgcolor='aqua'),
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.1
-    )
+)
 fig.update_xaxes(visible=False)
-#fig.show()
+# fig.show()
 st.plotly_chart(fig)
-
 
 # In[95]:
 
 
-fig = go.Figure(data=[go.Histogram(x=alcohol['G3'], name = 'number of people who recieved each grade',marker=dict(color="LightSeaGreen"))])
+fig = go.Figure(data=[
+    go.Histogram(x=alcohol['G3'], name='number of people who recieved each grade', marker=dict(color="LightSeaGreen"))])
 
 smoothTrace = {
-            'type' : 'scatter',
-            'mode' : 'lines',
-            'x' : alcohol['G3'].value_counts().sort_index().index,
-            'y' : alcohol['G3'].value_counts().sort_index(),
-            'line': {'shape': 'spline', 'smoothing': 1.3}
-            
-            }
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': alcohol['G3'].value_counts().sort_index().index,
+    'y': alcohol['G3'].value_counts().sort_index(),
+    'line': {'shape': 'spline', 'smoothing': 1.3}
 
-fig.add_trace(go.Scatter(smoothTrace, name = 'trade line'))
+}
+
+fig.add_trace(go.Scatter(smoothTrace, name='trade line'))
 fig.update_layout(
     title="The number of people who received each grade",
-    title_x = 0.5,
+    title_x=0.5,
     xaxis_title="English exam grade of the respondents",
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.1)
-#fig.update_traces(line_color='#0000ff', line_width=5)
-#fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
-#plt.fig(color='green')
-#fig.show()
+# fig.update_traces(line_color='#0000ff', line_width=5)
+# fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
+# plt.fig(color='green')
+# fig.show()
 st.plotly_chart(fig)
-
 
 # ## More detailed overview
 
@@ -279,17 +279,15 @@ st.plotly_chart(fig)
 # In[96]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0,1])
-
+print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 
 # In[97]:
 
 
-data_corr = pd.DataFrame(data = alcohol, columns = ['Alc','failures','absences','age','health','sex','goout'])
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
 display(data_corr.corr())
-pd.plotting.scatter_matrix(data_corr, figsize=(20, 10)) 
+pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 plt.show()
-
 
 # Hooray! There is a correlation and it is quite strong, let's visualize it!
 
@@ -299,20 +297,21 @@ plt.show()
 small_free_time1 = alcohol['freetime'] < 3
 much_free_time1 = alcohol['freetime'] >= 3
 small_free_time = alcohol[small_free_time1]
-much_free_time= alcohol[much_free_time1]
+much_free_time = alcohol[much_free_time1]
 fig = go.Figure()
-fig.add_trace(go.Bar(x = small_free_time['Alc'].value_counts().sort_index().index, y=small_free_time['Alc'].value_counts().sort_index(), name = 'people with less free time'))
-fig.add_trace(go.Bar(x = much_free_time['Alc'].value_counts().sort_index().index, y=much_free_time['Alc'].value_counts().sort_index(), name = 'people with much free time'))
+fig.add_trace(go.Bar(x=small_free_time['Alc'].value_counts().sort_index().index,
+                     y=small_free_time['Alc'].value_counts().sort_index(), name='people with less free time'))
+fig.add_trace(go.Bar(x=much_free_time['Alc'].value_counts().sort_index().index,
+                     y=much_free_time['Alc'].value_counts().sort_index(), name='people with much free time'))
 fig.update_layout(barmode='stack',
                   title="The consumption of the alcohol for people with much and less free time",
-                  title_x = 0.5,
+                  title_x=0.5,
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
                   legend=dict(x=.5, xanchor="center", orientation="h"),
                   margin=dict(l=0, r=0, t=30, b=0))
-#fig.show()
+# fig.show()
 st.plotly_chart(fig)
-
 
 # The resulting graph shows that alcohol consumption increases with the increase in the number of parties with friends. This may be due to the fact that students like to drink in the company, and accordingly fall into the drinking company, with which they often go to bars and clubs.
 
@@ -321,13 +320,9 @@ st.plotly_chart(fig)
 # In[99]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['sex'])[0,1])
-
+print(np.corrcoef(alcohol['Alc'], alcohol['sex'])[0, 1])
 
 # In[99]:
-
-
-
 
 
 # Let's look at alcohol consumption among men and women separately. I will assume that men drink alcohol more than women.
@@ -341,17 +336,16 @@ female = alcohol[female1]
 male = alcohol[male1]
 
 fig = go.Figure()
-fig.add_trace(go.Histogram(x=male['Alc'], name = 'men',marker=dict(color="#082567")))
-fig.add_trace(go.Histogram(x=female['Alc'], name = 'women',marker=dict(color="#ffd800")))
+fig.add_trace(go.Histogram(x=male['Alc'], name='men', marker=dict(color="#082567")))
+fig.add_trace(go.Histogram(x=female['Alc'], name='women', marker=dict(color="#ffd800")))
 fig.update_layout(title="The consumption of the alcohol of men and women",
-                  title_x = 0.5,
+                  title_x=0.5,
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
                   legend=dict(x=.5, xanchor="center", orientation="h"),
                   margin=dict(l=0, r=0, t=30, b=0))
-#fig.show()
+# fig.show()
 st.plotly_chart(fig)
-
 
 # The resulting graph confirms my assumption. This may be related to the biological and psychological characteristics of people of different sexes.
 # Let's look at the correlation between alcohol and the amount of free time. My guess is that the more free time you have, the more you drink.
@@ -359,8 +353,7 @@ st.plotly_chart(fig)
 # In[101]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0,1])
-
+print(np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0, 1])
 
 # And indeed, there is a fairly strong correlation.  This may be due to the fact that people simply have nothing to occupy themselves with, and taking alcohol becomes their main entertainment.
 
@@ -369,26 +362,24 @@ print(np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0,1])
 # In[102]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['failures'])[0,1]) #correlation of the amount of alcohol consumed and failures
-
+print(np.corrcoef(alcohol['Alc'], alcohol['failures'])[
+          0, 1])  # correlation of the amount of alcohol consumed and failures
 
 # In[103]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['absences'])[0,1]) #correlation of the amount of alcohol consumed and abscences
-
+print(np.corrcoef(alcohol['Alc'], alcohol['absences'])[
+          0, 1])  # correlation of the amount of alcohol consumed and abscences
 
 # In[104]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['age'])[0,1]) #correlation of the amount of alcohol consumed and age
-
+print(np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1])  # correlation of the amount of alcohol consumed and age
 
 # In[105]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['health'])[0,1]) #correlation of the amount of alcohol consumed and health
-
+print(np.corrcoef(alcohol['Alc'], alcohol['health'])[0, 1])  # correlation of the amount of alcohol consumed and health
 
 # ### Trivial, but interesting things in visualization
 
@@ -402,19 +393,22 @@ male1 = alcohol['sex'] > 0
 female = alcohol[female1]
 male = alcohol[male1]
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=male['AllStudytime'].value_counts().sort_index().index, y=male['AllStudytime'].value_counts().sort_index(),name = 'men', mode='lines+markers', line=dict(color="#082567")))
-fig.add_trace(go.Scatter(x=female['AllStudytime'].value_counts().sort_index().index, y=female['AllStudytime'].value_counts().sort_index(),name = 'women',mode='lines+markers',line=dict(color="#ffff00")))
+fig.add_trace(go.Scatter(x=male['AllStudytime'].value_counts().sort_index().index,
+                         y=male['AllStudytime'].value_counts().sort_index(), name='men', mode='lines+markers',
+                         line=dict(color="#082567")))
+fig.add_trace(go.Scatter(x=female['AllStudytime'].value_counts().sort_index().index,
+                         y=female['AllStudytime'].value_counts().sort_index(), name='women', mode='lines+markers',
+                         line=dict(color="#ffff00")))
 fig.update_layout(
     title="Study time of men and women",
-    title_x = 0.5,
+    title_x=0.5,
     xaxis_title="Frequency of alcohol consumption by the respondents",
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-bargap=0.2)
-#fig.show()
+    bargap=0.2)
+# fig.show()
 st.plotly_chart(fig)
-
 
 # Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.
 
@@ -425,17 +419,15 @@ st.plotly_chart(fig)
 # In[107]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0,1])
-
+print(np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1])
 
 # In[108]:
 
 
-data_corr = pd.DataFrame(data = alcohol, columns = ['Alc','failures','absences','age','health','sex','AllStudytime'])
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
 display(data_corr.corr())
-pd.plotting.scatter_matrix(data_corr, figsize=(20, 10)) 
+pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 plt.show()
-
 
 # Indeed, there is a rather strong negative correlation. Let's look at the visualization.
 
@@ -443,19 +435,21 @@ plt.show()
 
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=alcohol['Alc'].value_counts().sort_index().index, y=alcohol['Alc'].value_counts().sort_index(),name = 'alcohol' ))
-fig.add_trace(go.Scatter(x=alcohol['AllStudytime'].value_counts().sort_index().index, y=alcohol['AllStudytime'].value_counts().sort_index(),name = 'study' ))
+fig.add_trace(
+    go.Scatter(x=alcohol['Alc'].value_counts().sort_index().index, y=alcohol['Alc'].value_counts().sort_index(),
+               name='alcohol'))
+fig.add_trace(go.Scatter(x=alcohol['AllStudytime'].value_counts().sort_index().index,
+                         y=alcohol['AllStudytime'].value_counts().sort_index(), name='study'))
 fig.update_layout(
     title="Alcohol consumption",
-    title_x = 0.5,
+    title_x=0.5,
     xaxis_title="Frequency of alcohol consumption and time spent studying by respondents",
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-bargap=0.2)
-#fig.show()
+    bargap=0.2)
+# fig.show()
 st.plotly_chart(fig)
-
 
 # This correlation quite logical, the more you study => the less free time => the less time for partying with friends. All other correlations are insignificant.
 
@@ -464,20 +458,17 @@ st.plotly_chart(fig)
 # In[110]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['famrel'])[0,1]) #correlation between alcohol and family relationships
-
+print(np.corrcoef(alcohol['Alc'], alcohol['famrel'])[0, 1])  # correlation between alcohol and family relationships
 
 # In[111]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['Medu'])[0,1]) #correlation between alcohol and mother's education
-
+print(np.corrcoef(alcohol['Alc'], alcohol['Medu'])[0, 1])  # correlation between alcohol and mother's education
 
 # In[112]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['Fedu'])[0,1]) #correlation between alcohol and father's education
-
+print(np.corrcoef(alcohol['Alc'], alcohol['Fedu'])[0, 1])  # correlation between alcohol and father's education
 
 # ## A main hypothesis check
 
@@ -492,28 +483,26 @@ female = alcohol[female1]
 male = alcohol[male1]
 
 fig = go.Figure(data=[go.Mesh3d(x=female['goout'],
-                   y=female['freetime'],
-                   z=female['Alc'],
-                   opacity=0.5,
-                   color='deeppink')])
-
+                                y=female['freetime'],
+                                z=female['Alc'],
+                                opacity=0.5,
+                                color='deeppink')])
 
 fig.update_layout(
-    scene = dict(
-        xaxis = dict(nticks=4, range=[0,5],),
-                     yaxis = dict(nticks=4, range=[0,5],),
-                     zaxis = dict(nticks=4, range=[0,5],),),
+    scene=dict(
+        xaxis=dict(nticks=4, range=[0, 5], ),
+        yaxis=dict(nticks=4, range=[0, 5], ),
+        zaxis=dict(nticks=4, range=[0, 5], ), ),
     width=1000,
     margin=dict(r=20, l=10, b=10, t=10),
     title="Correlation between free time, goouts and frequency of alcohol consumption",
-    title_x = 0.5,
+    title_x=0.5,
     xaxis_title="goouts",
     yaxis_title="freetime",
     legend=dict(x=.5, xanchor="center", orientation="h"),
 )
-#fig.show()
+# fig.show()
 st.plotly_chart(fig)
-
 
 # We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.
 
@@ -526,7 +515,8 @@ st.plotly_chart(fig)
 # In[ ]:
 
 
-logging.basicConfig(filename='bot.log', level=logging.INFO) 
+logging.basicConfig(filename='bot.log', level=logging.INFO)
+
 
 def dialog_sex(update, context):
     reply_keyboard = [['Мужской'], ['Женский']]
@@ -565,11 +555,11 @@ def dialog_friends(update, context):
 
 def dialog_ending(update, context):
     context.user_data['dialog']['friends'] = int(update.message.text)
-    sex = context.user_data['dialog']['sex'] 
+    sex = context.user_data['dialog']['sex']
     free_time = context.user_data['dialog']['time']
     times_with_friends = context.user_data['dialog']['friends']
 
-    result = (times_with_friends * 9) + (free_time * 9) + 10 * sex 
+    result = (times_with_friends * 9) + (free_time * 9) + 10 * sex
 
     update.message.reply_text(
         f'Риск подверженности алкоголизму {result}%!',
@@ -584,6 +574,7 @@ def dialog_dontknow(update, context):
         'Кажется, вы прислали мне что-то не то!'
     )
 
+
 def main_keyboard():
     return ReplyKeyboardMarkup(
         [['Посчитать степень алкоголизма']]
@@ -595,7 +586,8 @@ def digits_keyboard():
         [['1', '2', '3', '4', '5']]
     )
 
-def greet_user(update, context): 
+
+def greet_user(update, context):
     user = update.effective_user
     update.message.reply_text(
         f'Привет, {user.first_name}! Если хочешь узнать степень своего алкоголизма, просто напиши мне «Посчитать степень алкоголизма»',
@@ -613,13 +605,13 @@ def main():
             dialog_sex)],
         states={'time': [MessageHandler(Filters.regex(
             '^(Мужской|Женский)$'), dialog_time)],
-                'friends': [MessageHandler(Filters.regex(
-                    '^(1|2|3|4|5)$'), dialog_friends)],
-                'ending': [MessageHandler(Filters.regex(
-                    '^(1|2|3|4|5)$'), dialog_ending)]},
+            'friends': [MessageHandler(Filters.regex(
+                '^(1|2|3|4|5)$'), dialog_friends)],
+            'ending': [MessageHandler(Filters.regex(
+                '^(1|2|3|4|5)$'), dialog_ending)]},
         fallbacks=[MessageHandler(Filters.text | Filters.video |
-                   Filters.photo | Filters.document |
-                   Filters.location | Filters.attachment, dialog_dontknow)])
+                                  Filters.photo | Filters.document |
+                                  Filters.location | Filters.attachment, dialog_dontknow)])
 
     dp.add_handler(dialog)
     dp.add_handler(CommandHandler("start", greet_user))
@@ -632,21 +624,10 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 # In[ ]:
-
-
-
 
 
 # In[ ]:
 
 
-
-
-
 # In[ ]:
-
-
-
-
