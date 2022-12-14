@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Student Alcohol Consumption
+st.title("Student Alcohol Consumption")
 
-# ## Introduction
-# In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.
+st.subheader("Introduction")
+st.write("In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.")
 # Here is a transcript of each of the values:
 # ### 1. school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira)
 # 2. sex - student's sex (binary: 'F' - female or 'M' - male)
@@ -72,7 +72,7 @@ import streamlit as st
 # from telegram import ReplyKeyboardMarkup
 
 
-# ### Let's see what data we will work with.
+st.subheader("Let's see what data we will work with.")
 
 # In[83]:
 
@@ -81,28 +81,28 @@ alcohol = pd.DataFrame(
     pd.read_csv('student_mat.csv', sep=','))
 st.write(alcohol)
 
-st.title("Contest from streamlit")
-st.header("")
-st.markdown("")
-st.subheader("")
-st.code("")
-st.header("ProjectStudentsAlcoholConsumption_1")
-st.markdown("Finaly")
-# ## Data cleanup
+#st.title("Contest from streamlit")
+#st.header("")
+#st.markdown("")
+#st.subheader("")
+#st.code("")
+#st.header("ProjectStudentsAlcoholConsumption_1")
+#st.markdown("Finaly")
+st.write("Data cleanup")
 
-# ### As we can see, the information presented in the table is complete and does not require cleaning
+st.subheader("As we can see, the information presented in the table is complete and does not require cleaning")
 
 # In[84]:
 
 
 alcohol.info()
 
-# ## Data transformation
+st.subheader("Data transformation")
 
-# ##### Here I am adding 3 columns, with each  I will work with in the futher.
-# 1. I normalized the average alcohol consumption of a person for a week (the original dataset contains 2 columns Walk and Walk), that is, alcohol consumption on weekends and working days. I combined them into one Alc column by adding and dividing by 2 (this will give us the average value).
-# 2. I normalized the average amount of time spent studying, that is, I added the studytime parameter with a weight of 1 and the traveltime parameter with a weight of 0.1, since in the original dataset, the time spent on studying is considered 10 times more than the time spent on a trip to an educational institution. For example, to get 5 points for studies, a person must study 10 or more hours a week, and to get 5 points for the traveltime parameter, a person must spend 1 hour or more per week on a trip to an educational institution.
-# 3. Finally, I changed the binary F and M in the sex column to 1 and 0.
+st.subheader("Here I am adding 3 columns, with each  I will work with in the futher.")
+st.write("1. I normalized the average alcohol consumption of a person for a week (the original dataset contains 2 columns Walk and Walk), that is, alcohol consumption on weekends and working days. I combined them into one Alc column by adding and dividing by 2 (this will give us the average value).")
+st.write("2. I normalized the average amount of time spent studying, that is, I added the studytime parameter with a weight of 1 and the traveltime parameter with a weight of 0.1, since in the original dataset, the time spent on studying is considered 10 times more than the time spent on a trip to an educational institution. For example, to get 5 points for studies, a person must study 10 or more hours a week, and to get 5 points for the traveltime parameter, a person must spend 1 hour or more per week on a trip to an educational institution.")
+st.write("3. Finally, I changed the binary F and M in the sex column to 1 and 0.")
 
 # In[85]:
 
@@ -113,7 +113,7 @@ alcohol.sex = alcohol.sex.apply([lambda x: 0 if x == 'F' else 1])
 pd.set_option('display.max_columns', None)
 alcohol
 
-# ## Descriptive statistics
+st.subheader("Descriptive statistics")
 
 # In[86]:
 
@@ -159,16 +159,16 @@ alcohol_med = [
 alcohol_mediana = pd.DataFrame(alcohol_med, columns=['value', 'age', 'Alc', 'G3', 'famrel', 'freetime'])
 alcohol_mediana
 
-# ### Let's look at some average values from the dataset.
-# 1. We can see that the average age of respondents is 17 years old. There is also a significant deviation of 1.28 points, which means that we also have a lot of 16 and 18-year-old students (we will check this later).
-# 2. It may seem strange but alcohol consumption is relatively small, only 1.88 points out of 5, which means that most students consume little alcohol but again we see a large variance that reached 1.29 points.
-# 3. At the same time, we can see that most of the people who passed the survey, studied well, anyway, the spread of the value is very big (4.58 points).
-# 4. We can also see that most students have good family relations (3.94 points out of 5), but again we see a large variance of 0.9 points).
-# 5. We can also see that the majority of respondents have a lot of free time, since the average value is 4 (out of 5) and the deviation relatively small, only 1 point. In the future, it is worth checking the correlation of free time and alcohol consumption.
+st.subheader("Let's look at some average values from the dataset.")
+st.write("1. We can see that the average age of respondents is 17 years old. There is also a significant deviation of 1.28 points, which means that we also have a lot of 16 and 18-year-old students (we will check this later).")
+st.write("2. It may seem strange but alcohol consumption is relatively small, only 1.88 points out of 5, which means that most students consume little alcohol but again we see a large variance that reached 1.29 points.")
+st.write("3. At the same time, we can see that most of the people who passed the survey, studied well, anyway, the spread of the value is very big (4.58 points).")
+st.write("4. We can also see that most students have good family relations (3.94 points out of 5), but again we see a large variance of 0.9 points).")
+st.write("5. We can also see that the majority of respondents have a lot of free time, since the average value is 4 (out of 5) and the deviation relatively small, only 1 point. In the future, it is worth checking the correlation of free time and alcohol consumption.")
 
 # # Overview
 
-# Let's look at the simple pie chart 'Internet conection of the respondents', the bar chart 'Number of people of each age' and the more complex bar chart 'Exam grades' with a trend line and also the line chart 'Alcohol consumption'
+st.write("Let's look at the simple pie chart 'Internet conection of the respondents', the bar chart 'Number of people of each age' and the more complex bar chart 'Exam grades' with a trend line and also the line chart 'Alcohol consumption'")
 
 # In[92]:
 
@@ -259,17 +259,17 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig)
 
-# ## More detailed overview
+st.write("More detailed overview")
 
-# In this part I will look at correlations and build complex graphs. However, I will build complex graphs only for those quantities for which there is a significant correlation.
-# You should familiarize yourself with the correlation values:
-# Correlation                   Connection
-# 0.00 - 0.24                     very weak connection
-# 0.24 - 0.49                     average connection
-# 0.49 - 0.75                     strong connection
-# 0.75 - 1.00                     very strong connection
+st.write("In this part I will look at correlations and build complex graphs. However, I will build complex graphs only for those quantities for which there is a significant correlation.")
+st.write("You should familiarize yourself with the correlation values:")
+st.write("Correlation                   Connection")
+st.write("0.00 - 0.24                     very weak connection")
+st.write("0.24 - 0.49                     average connection")
+st.write("0.49 - 0.75                     strong connection")
+st.write("0.75 - 1.00                     very strong connection")
 
-# I decided to divide the correlation coefficients into two subtypes: positive and negative. And also distribute them in descending order.
+st.write("I decided to divide the correlation coefficients into two subtypes: positive and negative. And also distribute them in descending order.")
 
 # ### Positive correlations
 
@@ -282,6 +282,7 @@ st.plotly_chart(fig)
 #print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 st.subheader("Positive correlations")
 st.write("Let's look at the correlation of free time and alcohol consumption. My guess is that the more you go out with friends, the more you drink.")
+
 a1 = np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]
 st.code("np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]")
 st.write(a1)
@@ -292,9 +293,9 @@ st.write(a1)
 data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
 #display(data_corr.corr())
 st.write(data_corr.corr())
-fig1 = pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
+#fig1 = pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
-st.vega_lite_chart(fig1)
+#st.vega_lite_chart(fig1)
 
 # Hooray! There is a correlation and it is quite strong, let's visualize it!
 
@@ -320,19 +321,22 @@ fig.update_layout(barmode='stack',
 # fig.show()
 st.plotly_chart(fig)
 
-# The resulting graph shows that alcohol consumption increases with the increase in the number of parties with friends. This may be due to the fact that students like to drink in the company, and accordingly fall into the drinking company, with which they often go to bars and clubs.
 
-# Let's look at the correlation between sex and the degree of alcohol consumed.
+st.write("The resulting graph shows that alcohol consumption increases with the increase in the number of parties with friends. This may be due to the fact that students like to drink in the company, and accordingly fall into the drinking company, with which they often go to bars and clubs.")
+
+st.write("Let's look at the correlation between sex and the degree of alcohol consumed.")
 
 # In[99]:
 
 
 #print(np.corrcoef(alcohol['Alc'], alcohol['sex'])[0, 1])
+a2 = np.corrcoef(alcohol['Alc'], alcohol['sex'])[0, 1]
 st.code("np.corrcoef(alcohol['Alc'], alcohol['sex'])[0, 1]")
+st.write(a2)
 # In[99]:
 
 
-# Let's look at alcohol consumption among men and women separately. I will assume that men drink alcohol more than women.
+st.write("Let's look at alcohol consumption among men and women separately. I will assume that men drink alcohol more than women.")
 
 # In[100]:
 
@@ -354,43 +358,49 @@ fig.update_layout(title="The consumption of the alcohol of men and women",
 # fig.show()
 st.plotly_chart(fig)
 
-# The resulting graph confirms my assumption. This may be related to the biological and psychological characteristics of people of different sexes.
-# Let's look at the correlation between alcohol and the amount of free time. My guess is that the more free time you have, the more you drink.
+st.write("The resulting graph confirms my assumption. This may be related to the biological and psychological characteristics of people of different sexes.")
+
+st.write("Let's look at the correlation between alcohol and the amount of free time. My guess is that the more free time you have, the more you drink.")
 
 # In[101]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0, 1])
+a3 = np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['freetime'])[0, 1]")
+st.write(a3)
 
-# And indeed, there is a fairly strong correlation.  This may be due to the fact that people simply have nothing to occupy themselves with, and taking alcohol becomes their main entertainment.
+st.write("And indeed, there is a fairly strong correlation.  This may be due to the fact that people simply have nothing to occupy themselves with, and taking alcohol becomes their main entertainment.")
 
-# Other correlations are too insignificant (they are given below), so it makes no sense to consider them further in the project.
+st.write("Other correlations are too insignificant (they are given below), so it makes no sense to consider them further in the project.")
 
 # In[102]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['failures'])[
-          0, 1])  # correlation of the amount of alcohol consumed and failures
-
+st.write("correlation of the amount of alcohol consumed and failures")
+a4 = np.corrcoef(alcohol['Alc'], alcohol['failures'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['failures'])[0, 1]")
+st.write(a4)
 # In[103]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['absences'])[
-          0, 1])  # correlation of the amount of alcohol consumed and abscences
-
+st.write("correlation of the amount of alcohol consumed and abscences")
+a5 = np.corrcoef(alcohol['Alc'], alcohol['absences'])[0, 1]  # correlation of the amount of alcohol consumed and abscences
+st.code("np.corrcoef(alcohol['Alc'], alcohol['absences'])[0, 1]")
+st.write("a5")
 # In[104]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1])  # correlation of the amount of alcohol consumed and age
-
+st.write("correlation of the amount of alcohol consumed and age")
+a6 = np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1]  # correlation of the amount of alcohol consumed and age
+st.code("np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1]")
+st.write("a6")
 # In[105]:
 
+st.write("correlation of the amount of alcohol consumed and health")
+a7 = np.corrcoef(alcohol['Alc'], alcohol['health'])[0, 1]  # correlation of the amount of alcohol consumed and health
+st.code("np.corrcoef(alcohol['Alc'], alcohol['health'])[0, 1]")
+st.write(a7)
 
-print(np.corrcoef(alcohol['Alc'], alcohol['health'])[0, 1])  # correlation of the amount of alcohol consumed and health
+st.subheader("Trivial, but interesting things in visualization")
 
-# ### Trivial, but interesting things in visualization
-
-# Everyone thinks that girls study better than boys, let's check it out!
+st.write("thinks that girls study better than boys, let's check it out!")
 
 # In[106]:
 
@@ -417,26 +427,27 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig)
 
-# Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.
+st.write("Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.")
 
-# ### Negative correlations
+st.subheader("Negative correlations")
 
-# Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.
+st.write("Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.")
 
 # In[107]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1])
+n1 = np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1]")
+st.write(n1)
 
 # In[108]:
 
 
-#data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
-#display(data_corr.corr())
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+write(data_corr.corr())
 #pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
 
-# Indeed, there is a rather strong negative correlation. Let's look at the visualization.
+st.write("Indeed, there is a rather strong negative correlation. Let's look at the visualization.")
 
 # In[109]:
 
@@ -458,28 +469,32 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig)
 
-# This correlation quite logical, the more you study => the less free time => the less time for partying with friends. All other correlations are insignificant.
+st.write("This correlation quite logical, the more you study => the less free time => the less time for partying with friends. All other correlations are insignificant.")
 
-# The remaining correlations are insignificant, their coefficient is much lower than 0.24.
+st.write("The remaining correlations are insignificant, their coefficient is much lower than 0.24.")
 
 # In[110]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['famrel'])[0, 1])  # correlation between alcohol and family relationships
-
+st.write("correlation between alcohol and family relationships")
+n2 = np.corrcoef(alcohol['Alc'], alcohol['famrel'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['famrel'])[0, 1]")  # correlation between alcohol and family relationships
+st.write("n2")
 # In[111]:
 
-
-print(np.corrcoef(alcohol['Alc'], alcohol['Medu'])[0, 1])  # correlation between alcohol and mother's education
-
+st.write("correlation between alcohol and mother's education")
+n3 = np.corrcoef(alcohol['Alc'], alcohol['Medu'])[0, 1]  # correlation between alcohol and mother's education
+st.code("np.corrcoef(alcohol['Alc'], alcohol['Medu'])[0, 1]")
+st.write(n3)
 # In[112]:
 
+st.write("correlation between alcohol and father's education")
+n4 = np.corrcoef(alcohol['Alc'], alcohol['Fedu'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['Fedu'])[0, 1]")  # correlation between alcohol and father's education
+st.write(n4)
 
-print(np.corrcoef(alcohol['Alc'], alcohol['Fedu'])[0, 1])  # correlation between alcohol and father's education
+st.subheader("A main hypothesis check")
 
-# ## A main hypothesis check
-
-# My hypothesis is that I believe that a lot of free time for girls and a lot of partying with friends lead to increase in alcohol consumption. I chose these values because they are the ones that are most positively correlated with alcohol: sex, amount of free time and hanging out with friends.
+st.write("My hypothesis is that I believe that a lot of free time for girls and a lot of partying with friends lead to increase in alcohol consumption. I chose these values because they are the ones that are most positively correlated with alcohol: sex, amount of free time and hanging out with friends.")
 
 # In[113]:
 
@@ -511,7 +526,7 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig)
 
-# We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.
+st.write("We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.")
 
 # ## Web interface
 
@@ -521,7 +536,7 @@ st.plotly_chart(fig)
 
 # In[ ]:
 
-
+""""
 logging.basicConfig(filename='bot.log', level=logging.INFO)
 
 
@@ -638,3 +653,4 @@ if __name__ == "__main__":
 
 
 # In[ ]:
+"""
