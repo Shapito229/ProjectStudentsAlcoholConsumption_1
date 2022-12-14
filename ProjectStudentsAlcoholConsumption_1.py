@@ -482,6 +482,9 @@ st.subheader("Negative correlations")
 data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
 #display(data_corr.corr())
 st.write(data_corr1.corr())
+fig_corr2 = px.scatter_matrix(data_corr1)
+fig_corr2.update_layout(width=600, height=600)
+st.plotly_chart(fig_corr2,use_container_width=True,theme="streamlit")
 
 st.write("Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.")
 
