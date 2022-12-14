@@ -6,7 +6,8 @@
 #st.subheader("Introduction")
 #st.write("In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.")
 # Here is a transcript of each of the values:
-# ### 1. school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira)
+# ###
+# 1. school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira)
 # 2. sex - student's sex (binary: 'F' - female or 'M' - male)
 # 3. age - student's age (numeric: from 15 to 22)
 # 4. address - student's home address type (binary: 'U' - urban or 'R' - rural)
@@ -77,6 +78,39 @@ st.write("In this project, I want to consider the impact of various factors on a
 
 st.subheader("Let's see what data we will work with.")
 
+st.write(" 1. school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira)")
+st.write(" 2. sex - student's sex (binary: 'F' - female or 'M' - male)")
+st.write(" 3. age - student's age (numeric: from 15 to 22)")
+st.write(" 4. address - student's home address type (binary: 'U' - urban or 'R' - rural)")
+st.write(" 5. famsize - size of the family (binary: 'LE3' - less or equal to 3 or 'GT3' - greater than 3)")
+st.write(" 6. Pstatus - parent's cohabitation status (binary: 'T' - living together or 'A' - apart)")
+st.write(" 7. Medu - mother's education (numeric: 0 - none, 1 - primary education (4th grade), 2 – 5th to 9th grade, 3 – secondary education or 4 – higher education)")
+st.write(" 8. Fedu - father's education (numeric: 0 - none, 1 - primary education (4th grade), 2 – 5th to 9th grade, 3 – secondary education or 4 – higher education)")
+st.write(" 9. Mjob - mother's job (nominal: 'teacher', 'health' care related, civil 'services' (e.g. administrative or police), 'at_home' or 'other')")
+st.write(" 10. Fjob - father's job (nominal: 'teacher', 'health' care related, civil 'services' (e.g. administrative or police), 'at_home' or 'other')")
+st.write(" 11. reason - reason to choose this school (nominal: close to 'home', school 'reputation', 'course' preference or 'other')")
+st.write(" 12. guardian - student's guardian (nominal: 'mother', 'father' or 'other')")
+st.write(" 13. traveltime - commute to school time (numeric: 1 - <15 min., 2 - 15 to 30 min., 3 - 30 min. to 1 hour, or 4 - >1 hour)")
+st.write(" 14. studytime - number of teaching hours (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours)")
+st.write(" 15. failures - number of class failures in the past (numeric: n if 1<=n<3, else 4)")
+st.write(" 16. schoolsup - if student have a scholarship (binary: yes or no)")
+st.write(" 17. famsup - family educational support (binary: yes or no)")
+st.write(" 18. paid - extra paid classes within the course subject (Math or Portuguese) (binary: yes or no)")
+st.write(" 19. activities - extracurricular activities (binary: yes or no)")
+st.write(" 20. nursery - if student attended nursery school (binary: yes or no)")
+st.write(" 21. higher - wants to take higher education (binary: yes or no)")
+st.write(" 22. internet - Internet access at home (binary: yes or no)")
+st.write(" 23. romantic - with a romantic relationship (binary: yes or no)")
+st.write(" 24. famrel - quality of family relationships (numeric: from 1 - very bad to 5 - excellent)")
+st.write(" 25. freetime - free time after school (numeric: from 1 - very low to 5 - very high)")
+st.write(" 26. goout - going out with friends (numeric: from 1 - very low to 5 - very high)")
+st.write(" 27. Dalc - workday alcohol consumption (numeric: from 1 - very low to 5 - very high)")
+st.write(" 28. Walc - weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)")
+st.write(" 29. health - current health status (numeric: from 1 - very bad to 5 - very good)")
+st.write(" 30. absences - number of school absences (numeric: from 0 to 93)")
+st.write(" 31. G1 - first semester grade (numeric: from 0 to 20)")
+st.write(" 32. G2 - second semester grade (numeric: from 0 to 20)")
+st.write(" 33. G3 - final grade (numeric: from 0 to 20, output target)")
 # In[83]:
 
 
@@ -91,18 +125,18 @@ st.write(alcohol)
 #st.code("")
 #st.header("ProjectStudentsAlcoholConsumption_1")
 #st.markdown("Finaly")
-st.write("Data cleanup")
+st.subheader("Data cleanup")
 
-st.subheader("As we can see, the information presented in the table is complete and does not require cleaning")
+st.write("As we can see, the information presented in the table is complete and does not require cleaning")
 
 # In[84]:
 
 
-alcohol.info()
+st.write(alcohol.info())
 
 st.subheader("Data transformation")
 
-st.subheader("Here I am adding 3 columns, with each  I will work with in the futher.")
+st.write("Here I am adding 3 columns, with each  I will work with in the futher.")
 st.write("1. I normalized the average alcohol consumption of a person for a week (the original dataset contains 2 columns Walk and Walk), that is, alcohol consumption on weekends and working days. I combined them into one Alc column by adding and dividing by 2 (this will give us the average value).")
 st.write("2. I normalized the average amount of time spent studying, that is, I added the studytime parameter with a weight of 1 and the traveltime parameter with a weight of 0.1, since in the original dataset, the time spent on studying is considered 10 times more than the time spent on a trip to an educational institution. For example, to get 5 points for studies, a person must study 10 or more hours a week, and to get 5 points for the traveltime parameter, a person must spend 1 hour or more per week on a trip to an educational institution.")
 st.write("3. Finally, I changed the binary F and M in the sex column to 1 and 0.")
@@ -114,7 +148,8 @@ alcohol = alcohol.assign(Alc=(alcohol.Dalc + alcohol.Walc) / 2)
 alcohol = alcohol.assign(AllStudytime=(alcohol.studytime + alcohol.traveltime * 0.1))
 alcohol.sex = alcohol.sex.apply([lambda x: 0 if x == 'F' else 1])
 pd.set_option('display.max_columns', None)
-alcohol
+alc1 = alcohol[['age','Alc','AllStudytime']]
+st.write(alc1)
 
 st.subheader("Descriptive statistics")
 
@@ -169,7 +204,7 @@ st.write("3. At the same time, we can see that most of the people who passed the
 st.write("4. We can also see that most students have good family relations (3.94 points out of 5), but again we see a large variance of 0.9 points).")
 st.write("5. We can also see that the majority of respondents have a lot of free time, since the average value is 4 (out of 5) and the deviation relatively small, only 1 point. In the future, it is worth checking the correlation of free time and alcohol consumption.")
 
-# # Overview
+st.subheader("Overview")
 
 st.write("Let's look at the simple pie chart 'Internet conection of the respondents', the bar chart 'Number of people of each age' and the more complex bar chart 'Exam grades' with a trend line and also the line chart 'Alcohol consumption'")
 
@@ -260,7 +295,7 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig, use_container_width=True)
 
-st.write("More detailed overview")
+st.subplot("More detailed overview")
 
 st.write("In this part I will look at correlations and build complex graphs. However, I will build complex graphs only for those quantities for which there is a significant correlation.")
 st.write("You should familiarize yourself with the correlation values:")
@@ -284,6 +319,10 @@ st.write("I decided to divide the correlation coefficients into two subtypes: po
 st.subheader("Positive correlations")
 st.write("Let's look at the correlation of free time and alcohol consumption. My guess is that the more you go out with friends, the more you drink.")
 
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
+#display(data_corr.corr())
+st.write(data_corr.corr())
+
 a1 = np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]
 st.code("np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]")
 st.write(a1)
@@ -291,14 +330,12 @@ st.write(a1)
 # In[97]:
 
 
-data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
-#display(data_corr.corr())
-st.write(data_corr.corr())
+
 #fig1 = pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
 #st.vega_lite_chart(fig1)
 
-# Hooray! There is a correlation and it is quite strong, let's visualize it!
+st.write("Hooray! There is a correlation and it is quite strong, let's visualize it!")
 
 # In[98]:
 
@@ -401,7 +438,7 @@ st.write(a7)
 
 st.subheader("Trivial, but interesting things in visualization")
 
-st.write("thinks that girls study better than boys, let's check it out!")
+st.write("Everyone thinks that girls study better than boys, let's check it out!")
 
 # In[106]:
 
@@ -434,6 +471,9 @@ st.subheader("Negative correlations")
 
 st.write("Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.")
 
+data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+#display(data_corr.corr())
+st.write(data_corr1.corr())
 # In[107]:
 
 n1 = np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1]
@@ -445,9 +485,7 @@ st.write(n1)
 
 #data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
 #write(data_corr.corr())
-data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
-#display(data_corr.corr())
-st.write(data_corr1.corr())
+
 #pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
 
