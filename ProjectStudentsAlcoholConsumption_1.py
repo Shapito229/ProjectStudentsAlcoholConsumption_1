@@ -325,8 +325,8 @@ st.subheader("Positive correlations")
 data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
 #display(data_corr.corr())
 st.write(data_corr.corr())
-fig_corr1 = px.scatter_matrix(data_corr, size=(20,10))
-st.plotly_chart(fig_corr1)
+fig_corr1 = px.scatter_matrix(data_corr)
+st.plotly_chart(fig_corr1,use_container_width=True,theme="streamlit")
 
 st.write("Let's look at the correlation of free time and alcohol consumption. My guess is that the more you go out with friends, the more you drink.")
 
