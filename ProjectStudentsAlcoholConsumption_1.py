@@ -132,7 +132,7 @@ st.write("As we can see, the information presented in the table is complete and 
 # In[84]:
 
 #alcohol.info()
-st.write(alcohol.dtypes)
+st.write(alcohol.isnull().sum())
 #st.write(alcohol.dtypes.count())
 st.write(alcohol.shape)
 #st.write(alcohol.info)
@@ -151,7 +151,7 @@ alcohol = alcohol.assign(Alc=(alcohol.Dalc + alcohol.Walc) / 2)
 alcohol = alcohol.assign(AllStudytime=(alcohol.studytime + alcohol.traveltime * 0.1))
 alcohol.sex = alcohol.sex.apply([lambda x: 0 if x == 'F' else 1])
 pd.set_option('display.max_columns', None)
-alc1 = alcohol[['age','Alc','AllStudytime']]
+alc1 = alcohol[['sex','Alc','AllStudytime']]
 st.write(alc1)
 
 st.subheader("Descriptive statistics")
@@ -321,6 +321,10 @@ st.write("I decided to divide the correlation coefficients into two subtypes: po
 
 #print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 st.subheader("Positive correlations")
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
+#display(data_corr.corr())
+st.write(data_corr.corr())
+
 st.write("Let's look at the correlation of free time and alcohol consumption. My guess is that the more you go out with friends, the more you drink.")
 
 data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
@@ -472,12 +476,13 @@ st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 st.write("Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.")
 
 st.subheader("Negative correlations")
-
-st.write("Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.")
-
 data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
 #display(data_corr.corr())
 st.write(data_corr1.corr())
+
+st.write("Let's look at the correlation between the amount of alcohol consumed and the time spent studying. I think the more you study, the less alcohol you consume.")
+
+
 # In[107]:
 
 n1 = np.corrcoef(alcohol['Alc'], alcohol['AllStudytime'])[0, 1]
@@ -557,7 +562,7 @@ fig = go.Figure(data=[go.Mesh3d(x=female['goout'],
                                 color='deeppink')])
 
 fig.update_layout(
-    scene=dict(xaxis_title='goouts',yaxis_title='freetime',
+    scene=dict(xaxis_title='goouts',yaxis_title='freetime',zaxis_title='alcohol',
         xaxis=dict(nticks=4, range=[0, 5], ),
         yaxis=dict(nticks=4, range=[0, 5], ),
         zaxis=dict(nticks=4, range=[0, 5], ), ),
