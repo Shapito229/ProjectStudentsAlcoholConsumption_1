@@ -573,8 +573,8 @@ fig.update_layout(
     #title="Correlation between free time, goouts and frequency of alcohol consumption",
     title_x=0.5,
     xaxis_title="goouts",
-    yaxis_title="freetime",
-    legend=dict(x=.5, xanchor="center", orientation="h"), height=600)
+    yaxis_title="freetime")
+    #legend=dict(x=.5, xanchor="center", orientation="h"), height=600)
 # fig.show()
 st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 
