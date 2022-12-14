@@ -226,7 +226,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.2)
 # fig.show()
-st.plotly_chart(fig,use_container_width=True,theme="streamlit",secondaryBackgroundColor = "dark")
+st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 
 # In[93]:
 
@@ -573,119 +573,118 @@ st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 
 st.write("We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.")
 
-# ## Web interface
+st.subheader("Web interface")
 
-# ### Telegram bot
+st.subheader("Telegram bot")
 
-# You can find bot by this link t.me/Alcash1bot
+st.write("You can find bot by this link t.me/Alcash1bot")
 
 # In[ ]:
 
 
-#logging.basicConfig(filename='bot.log', level=logging.INFO)
+st.code("logging.basicConfig(filename='bot.log', level=logging.INFO)")
 
 
-#def dialog_sex(update, context):
-#    reply_keyboard = [['Мужской'], ['Женский']]
-#    update.message.reply_text(
-#        'Пожалуйста, выберите ваш пол:',
-#        reply_markup=ReplyKeyboardMarkup(
-#            reply_keyboard, one_time_keyboard=True)
-#    )
-#
-#    return 'time'
-#
-#
-#def dialog_time(update, context):
-#    sex = update.message.text
-#    if sex == 'Мужской':
-#        context.user_data['dialog'] = {'sex': 1}
-#    elif sex == 'Женский':
-#        context.user_data['dialog'] = {'sex': 0}
-#    update.message.reply_text(
-#        'Сколько у вас свободного времени по шкале от 1 до 5?',
-#        reply_markup=digits_keyboard()
-#    )
-#
-#    return "friends"
+st.code("def dialog_sex(update, context):")
+st.code("    reply_keyboard = [['Мужской'], ['Женский']]")
+st.code("    update.message.reply_text(")
+st.code("        'Пожалуйста, выберите ваш пол:',")
+st.code("        reply_markup=ReplyKeyboardMarkup(")
+st.code("            reply_keyboard, one_time_keyboard=True)")
+st.code("    )")
+
+st.code("    return 'time'")
 
 
-#def dialog_friends(update, context):
-#    context.user_data['dialog']['time'] = int(update.message.text)
-#    update.message.reply_text(
-#        'По шкале от 1 до 5 – как часто вы встречаетесь с друзьями?',
-#        reply_markup=digits_keyboard()
-#    )
+def dialog_time(update, context):
+    sex = update.message.text
+    if sex == 'Мужской':
+        context.user_data['dialog'] = {'sex': 1}
+    elif sex == 'Женский':
+        context.user_data['dialog'] = {'sex': 0}
+    update.message.reply_text(
+        'Сколько у вас свободного времени по шкале от 1 до 5?',
+        reply_markup=digits_keyboard()
+    )
 
-#    return 'ending'
-
-
-#def dialog_ending(update, context):
-#    context.user_data['dialog']['friends'] = int(update.message.text)
-#    sex = context.user_data['dialog']['sex']
-#    free_time = context.user_data['dialog']['time']
-#    times_with_friends = context.user_data['dialog']['friends']
-
-#    result = (times_with_friends * 9) + (free_time * 9) + 10 * sex
-
-#    update.message.reply_text(
-#        f'Риск подверженности алкоголизму {result}%!',
-#        reply_markup=main_keyboard()
-#    )
-
-#    return ConversationHandler.END
+    return "friends"
 
 
-#def dialog_dontknow(update, context):
-#    update.message.reply_text(
-#        'Кажется, вы прислали мне что-то не то!'
-#    )
+def dialog_friends(update, context):
+    context.user_data['dialog']['time'] = int(update.message.text)
+    update.message.reply_text(
+        'По шкале от 1 до 5 – как часто вы встречаетесь с друзьями?',
+        reply_markup=digits_keyboard()
+    )
+
+    return 'ending'
+
+def dialog_ending(update, context):
+    context.user_data['dialog']['friends'] = int(update.message.text)
+    sex = context.user_data['dialog']['sex']
+    free_time = context.user_data['dialog']['time']
+    times_with_friends = context.user_data['dialog']['friends']
+
+    result = (times_with_friends * 9) + (free_time * 9) + 10 * sex
+
+    update.message.reply_text(
+        f'Риск подверженности алкоголизму {result}%!',
+        reply_markup=main_keyboard()
+    )
+
+    return ConversationHandler.END
 
 
-#def main_keyboard():
-#    return ReplyKeyboardMarkup(
-#        [['Посчитать степень алкоголизма']]
-#    )
+def dialog_dontknow(update, context):
+    update.message.reply_text(
+        'Кажется, вы прислали мне что-то не то!'
+    )
 
 
-#def digits_keyboard():
-#    return ReplyKeyboardMarkup(
-#        [['1', '2', '3', '4', '5']]
-#    )
+def main_keyboard():
+    return ReplyKeyboardMarkup(
+        [['Посчитать степень алкоголизма']]
+    )
 
 
-#def greet_user(update, context):
-#    user = update.effective_user
-#    update.message.reply_text(
-#        f'Привет, {user.first_name}! Если хочешь узнать степень своего алкоголизма, просто напиши мне «Посчитать степень алкоголизма»',
-#        reply_markup=main_keyboard()
-#    )
+def digits_keyboard():
+    return ReplyKeyboardMarkup(
+        [['1', '2', '3', '4', '5']]
+    )
 
 
-#def main():
-#    mybot = Updater('5807673465:AAHGUxfVfoH7SyrBkablRY8nmYhEhbnMB8w')
-#    dp = mybot.dispatcher
+def greet_user(update, context):
+    user = update.effective_user
+    update.message.reply_text(
+        f'Привет, {user.first_name}! Если хочешь узнать степень своего алкоголизма, просто напиши мне «Посчитать степень алкоголизма»',
+        reply_markup=main_keyboard()
+    )
 
-#    dialog = ConversationHandler(
-#        entry_points=[MessageHandler(Filters.regex(
-#            '^(Посчитать степень алкоголизма|посчитать степень алкоголизма)$'),
-#            dialog_sex)],
-#        states={'time': [MessageHandler(Filters.regex(
-#            '^(Мужской|Женский)$'), dialog_time)],
-#            'friends': [MessageHandler(Filters.regex(
-#                '^(1|2|3|4|5)$'), dialog_friends)],
-#            'ending': [MessageHandler(Filters.regex(
-#                '^(1|2|3|4|5)$'), dialog_ending)]},
-#        fallbacks=[MessageHandler(Filters.text | Filters.video |
-#                                  Filters.photo | Filters.document |
-#                                  Filters.location | Filters.attachment, dialog_dontknow)])
 
-#    dp.add_handler(dialog)
-#    dp.add_handler(CommandHandler("start", greet_user))
+def main():
+    mybot = Updater('5807673465:AAHGUxfVfoH7SyrBkablRY8nmYhEhbnMB8w')
+    dp = mybot.dispatcher
 
-#    logging.info("Бот стартовал")
-#    mybot.start_polling()
-#    mybot.idle()
+    dialog = ConversationHandler(
+        entry_points=[MessageHandler(Filters.regex(
+            '^(Посчитать степень алкоголизма|посчитать степень алкоголизма)$'),
+            dialog_sex)],
+        states={'time': [MessageHandler(Filters.regex(
+            '^(Мужской|Женский)$'), dialog_time)],
+            'friends': [MessageHandler(Filters.regex(
+                '^(1|2|3|4|5)$'), dialog_friends)],
+            'ending': [MessageHandler(Filters.regex(
+                '^(1|2|3|4|5)$'), dialog_ending)]},
+        fallbacks=[MessageHandler(Filters.text | Filters.video |
+                                  Filters.photo | Filters.document |
+                                  Filters.location | Filters.attachment, dialog_dontknow)])
+
+    dp.add_handler(dialog)
+    dp.add_handler(CommandHandler("start", greet_user))
+
+    logging.info("Бот стартовал")
+    mybot.start_polling()
+    mybot.idle()
 
 
 #if __name__ == "__main__":
