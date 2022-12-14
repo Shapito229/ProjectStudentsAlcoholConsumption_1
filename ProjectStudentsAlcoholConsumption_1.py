@@ -318,7 +318,7 @@ fig.update_layout(barmode='stack',
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
                   legend=dict(x=.5, xanchor="center", orientation="h"),
-                  margin=dict(l=0, r=0, t=30, b=0))
+                  margin=dict(l=0, r=0, t=30, b=0),width=1000, height=600)
 # fig.show()
 st.plotly_chart(fig)
 
@@ -355,7 +355,7 @@ fig.update_layout(title="The consumption of the alcohol of men and women",
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
                   legend=dict(x=.5, xanchor="center", orientation="h"),
-                  margin=dict(l=0, r=0, t=30, b=0))
+                  margin=dict(l=0, r=0, t=30, b=0),width=1000, height=600)
 # fig.show()
 st.plotly_chart(fig)
 
@@ -424,7 +424,7 @@ fig.update_layout(
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-    bargap=0.2)
+    bargap=0.2,width=1000, height=600)
 # fig.show()
 st.plotly_chart(fig)
 
@@ -469,7 +469,7 @@ fig.update_layout(
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-    bargap=0.2)
+    bargap=0.2,width=1000, height=600)
 # fig.show()
 st.plotly_chart(fig)
 
@@ -525,8 +525,7 @@ fig.update_layout(
     title_x=0.5,
     xaxis_title="goouts",
     yaxis_title="freetime",
-    legend=dict(x=.5, xanchor="center", orientation="h"),
-)
+    legend=dict(x=.5, xanchor="center", orientation="h"), height=600)
 # fig.show()
 st.plotly_chart(fig)
 
