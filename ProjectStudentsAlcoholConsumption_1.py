@@ -281,13 +281,14 @@ st.plotly_chart(fig)
 
 #print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 st.code("a1 = np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]")
-st.write("a1")
+st.write(a1)
 
 # In[97]:
 
 
-#data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
 #display(data_corr.corr())
+st.write(data_corr.corr())
 #pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
 
