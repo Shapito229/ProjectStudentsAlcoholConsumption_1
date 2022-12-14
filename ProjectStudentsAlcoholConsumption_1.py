@@ -67,9 +67,7 @@ import itertools
 # from telebot import types
 import logging
 import streamlit as st
-[theme]
-base = 'dark'
-primaryColor = 'purple'
+
 # from telegram.ext import (CommandHandler, ConversationHandler, Filters,
 #                          MessageHandler, Updater)
 # from telegram import ReplyKeyboardMarkup
