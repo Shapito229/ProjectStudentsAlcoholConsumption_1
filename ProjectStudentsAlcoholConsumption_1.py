@@ -218,8 +218,8 @@ st.write("Let's look at the simple pie chart 'Internet conection of the responde
 fig = go.Figure()
 fig.add_trace(
     go.Scatter(x=alcohol['Alc'].value_counts().sort_index().index, y=alcohol['Alc'].value_counts().sort_index()))
-fig.update_layout(
-    title="Alcohol consumption",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="Alcohol consumption",
     title_x=0.5,
     xaxis_title="Frequency of alcohol consumption by respondents",
     yaxis_title="Number of the respondents",
@@ -237,8 +237,8 @@ number_of_people_with_and_without_internet = [alcohol[alcohol['internet'] == 'ye
                                               alcohol[alcohol['internet'] == 'no'].shape[0]]
 names_of_the_values = ['Number of people with internet at home', 'Number of people without internet at home']
 fig = px.pie(df, values=number_of_people_with_and_without_internet, names=names_of_the_values)
-fig.update_layout(
-    title="Distribution of people by internet connection",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="Distribution of people by internet connection",
     title_x=0.5,
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0))
@@ -255,8 +255,8 @@ number_of_people_of_age = [alcohol[alcohol['age'] == 15].shape[0], alcohol[alcoh
                            alcohol[alcohol['age'] == 21].shape[0], alcohol[alcohol['age'] == 22].shape[0]]
 names_of_the_values = ['Number of people of age 15', 'Number of people of age 16', 'Number of people of age 17', 'Number of people of age 18', 'Number of people of age 19', 'Number of people of age 20','Number of people of age 21', 'Number of people of age 22']
 fig = px.bar(data, y=number_of_people_of_age, x=names_of_the_values, color=names_of_the_values)
-fig.update_layout(
-    title="Distribution of people by age",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="Distribution of people by age",
     title_x=0.5,
     # xaxis.set_visible(False),
     xaxis_title="Age of the respondents",
@@ -285,8 +285,8 @@ smoothTrace = {
 }
 
 fig.add_trace(go.Scatter(smoothTrace, name='trade line'))
-fig.update_layout(
-    title="The number of people who received each grade",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="The number of people who received each grade",
     title_x=0.5,
     xaxis_title="English exam grade of the respondents",
     yaxis_title="Number of the respondents",
@@ -358,8 +358,8 @@ fig.add_trace(go.Bar(x=small_free_time['Alc'].value_counts().sort_index().index,
                      y=small_free_time['Alc'].value_counts().sort_index(), name='people with less free time'))
 fig.add_trace(go.Bar(x=much_free_time['Alc'].value_counts().sort_index().index,
                      y=much_free_time['Alc'].value_counts().sort_index(), name='people with much free time'))
-fig.update_layout(barmode='stack',
-                  title="The consumption of the alcohol for people with much and less free time",
+fig.update_layout(barmode='stack',title=dict(xanchor= 'center'),
+                  title_text="The consumption of the alcohol for people with much and less free time",
                   title_x=0.5,
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
@@ -396,7 +396,8 @@ male = alcohol[male1]
 fig = go.Figure()
 fig.add_trace(go.Histogram(x=male['Alc'], name='men', marker=dict(color="#082567")))
 fig.add_trace(go.Histogram(x=female['Alc'], name='women', marker=dict(color="#ffd800")))
-fig.update_layout(title="The consumption of the alcohol of men and women",
+fig.update_layout(title=dict(xanchor= 'center'),
+                  title_text="The consumption of the alcohol of men and women",
                   title_x=0.5,
                   xaxis_title="Frequency of alcohol consumption by the respondents",
                   yaxis_title="Number of the respondents",
@@ -463,8 +464,8 @@ fig.add_trace(go.Scatter(x=male['AllStudytime'].value_counts().sort_index().inde
 fig.add_trace(go.Scatter(x=female['AllStudytime'].value_counts().sort_index().index,
                          y=female['AllStudytime'].value_counts().sort_index(), name='women', mode='lines+markers',
                          line=dict(color="#ffff00")))
-fig.update_layout(
-    title="Study time of men and women",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="Study time of men and women",
     title_x=0.5,
     xaxis_title="Frequency of alcohol consumption by the respondents",
     yaxis_title="Number of the respondents",
@@ -510,8 +511,8 @@ fig.add_trace(
                name='alcohol'))
 fig.add_trace(go.Scatter(x=alcohol['AllStudytime'].value_counts().sort_index().index,
                          y=alcohol['AllStudytime'].value_counts().sort_index(), name='study'))
-fig.update_layout(
-    title="Alcohol consumption",
+fig.update_layout(title=dict(xanchor= 'center'),
+    title_text="Alcohol consumption",
     title_x=0.5,
     xaxis_title="Frequency of alcohol consumption and time spent studying by respondents",
     yaxis_title="Number of the respondents",
@@ -569,7 +570,7 @@ fig.update_layout(
         zaxis=dict(nticks=4, range=[0, 5], ), ),
     width=1000,
     margin=dict(r=20, l=10, b=10, t=10),
-    title="Correlation between free time, goouts and frequency of alcohol consumption",
+    #title="Correlation between free time, goouts and frequency of alcohol consumption",
     title_x=0.5,
     xaxis_title="goouts",
     yaxis_title="freetime",
