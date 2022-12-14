@@ -122,7 +122,7 @@ st.subheader("Descriptive statistics")
 
 
 print(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
-
+st.write(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
 # In[87]:
 
 
