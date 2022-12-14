@@ -387,13 +387,13 @@ st.write(a4)
 st.write("correlation of the amount of alcohol consumed and abscences")
 a5 = np.corrcoef(alcohol['Alc'], alcohol['absences'])[0, 1]  # correlation of the amount of alcohol consumed and abscences
 st.code("np.corrcoef(alcohol['Alc'], alcohol['absences'])[0, 1]")
-st.write("a5")
+st.write(a5)
 # In[104]:
 
 st.write("correlation of the amount of alcohol consumed and age")
 a6 = np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1]  # correlation of the amount of alcohol consumed and age
 st.code("np.corrcoef(alcohol['Alc'], alcohol['age'])[0, 1]")
-st.write("a6")
+st.write(a6)
 # In[105]:
 
 st.write("correlation of the amount of alcohol consumed and health")
@@ -445,8 +445,11 @@ st.write(n1)
 # In[108]:
 
 
-data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
-write(data_corr.corr())
+#data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+#write(data_corr.corr())
+data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+#display(data_corr.corr())
+st.write(data_corr1.corr())
 #pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
 
