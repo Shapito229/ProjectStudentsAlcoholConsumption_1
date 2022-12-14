@@ -280,7 +280,10 @@ st.plotly_chart(fig)
 
 
 #print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
+st.subheader("Positive correlations")
+st.write("Let's look at the correlation of free time and alcohol consumption. My guess is that the more you go out with friends, the more you drink.")
 a1 = np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]
+st.code("np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]")
 st.write(a1)
 
 # In[97]:
