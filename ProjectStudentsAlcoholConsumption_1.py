@@ -576,7 +576,7 @@ fig.update_layout(
     yaxis_title="freetime")
     #legend=dict(x=.5, xanchor="center", orientation="h"), height=600)
 # fig.show()
-st.plotly_chart(fig,use_container_width=False,theme="streamlit")
+st.plotly_chart(fig,use_container_width=True)#,theme="streamlit")
 
 st.write("We can see that the graph has the shape of a mountain with a peak at point (5,5,5) (almost perfect correlation), which confirms our hypothesis: alcohol consumption is maximal at the point where other parameters are maximal. The irregularities of this mountain can be explained by insufficient sampling, if it were larger, the graph would have the shape of a triangle with a vertex at the same point.")
 
