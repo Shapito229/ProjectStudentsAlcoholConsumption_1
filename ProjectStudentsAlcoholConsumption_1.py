@@ -258,7 +258,7 @@ fig.update_layout(
 # fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
 # plt.fig(color='green')
 # fig.show()
-st.plotly_chart(fig, use_container_width=False)
+st.plotly_chart(fig, use_container_width=False, **kwargs(figsize=(20, 10)))
 
 st.write("More detailed overview")
 
