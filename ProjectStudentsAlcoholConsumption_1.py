@@ -279,7 +279,8 @@ st.plotly_chart(fig)
 # In[96]:
 
 
-print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
+#print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
+st.write("np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1]")
 
 # In[97]:
 
