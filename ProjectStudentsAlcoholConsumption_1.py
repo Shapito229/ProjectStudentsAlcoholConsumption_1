@@ -295,7 +295,7 @@ fig.update_layout(
 # fig.show()
 st.plotly_chart(fig, use_container_width=True)
 
-st.subplot("More detailed overview")
+st.subheader("More detailed overview")
 
 st.write("In this part I will look at correlations and build complex graphs. However, I will build complex graphs only for those quantities for which there is a significant correlation.")
 st.write("You should familiarize yourself with the correlation values:")
