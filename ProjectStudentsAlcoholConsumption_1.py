@@ -67,7 +67,9 @@ import itertools
 # from telebot import types
 import logging
 import streamlit as st
-
+[theme]
+base = 'dark'
+primaryColor = 'purple'
 # from telegram.ext import (CommandHandler, ConversationHandler, Filters,
 #                          MessageHandler, Updater)
 # from telegram import ReplyKeyboardMarkup
@@ -226,7 +228,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.2)
 # fig.show()
-st.plotly_chart(fig,use_container_width=True,theme="streamlit",base="dark")
+st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 
 # In[93]:
 
