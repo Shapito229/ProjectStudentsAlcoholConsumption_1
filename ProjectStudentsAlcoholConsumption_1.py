@@ -297,7 +297,7 @@ fig.update_layout(
 # plt.fig(color='green')
 # fig.show()
 fig.update_xaxes(visible=True)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True,theme="streamlit")
 
 st.subheader("More detailed overview")
 
