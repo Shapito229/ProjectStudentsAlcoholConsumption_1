@@ -132,6 +132,7 @@ st.write("As we can see, the information presented in the table is complete and 
 # In[84]:
 
 #alcohol.info()
+st.write("Output of the number of null")
 st.write(alcohol.isnull().sum())
 #st.write(alcohol.dtypes.count())
 st.write(alcohol.shape)
