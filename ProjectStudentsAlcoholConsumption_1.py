@@ -479,7 +479,7 @@ st.plotly_chart(fig,use_container_width=True,theme="streamlit")
 st.write("Indeed, girls study more than boys (this can be seen by the fact that the red line is almost always higher than the blue one, which means that on average the amount of time spent studying is more). This can again be explained by the biological and physiological differences of both sexes.")
 
 st.subheader("Negative correlations")
-data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'AllStudytime'])
+data_corr1 = pd.DataFrame(data=alcohol, columns=['Alc', 'famrel', 'Medu', 'Fedu', 'AllStudytime'])
 #display(data_corr.corr())
 st.write(data_corr1.corr())
 fig_corr2 = px.scatter_matrix(data_corr1)
