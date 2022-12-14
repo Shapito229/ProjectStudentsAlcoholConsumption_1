@@ -261,7 +261,7 @@ fig.update_layout(title=dict(xanchor= 'center'),
     # xaxis.set_visible(False),
     xaxis_title="Age of the respondents",
     yaxis_title="Number of the respondents",
-    legend=dict(x=.5, xanchor="center", orientation="h", bgcolor='aqua'),
+    legend=dict(x=.5, xanchor="center", orientation="h", bgcolor='black'),
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.1
 )
@@ -322,7 +322,7 @@ st.write("I decided to divide the correlation coefficients into two subtypes: po
 
 #print(np.corrcoef(alcohol['Alc'], alcohol['goout'])[0, 1])
 st.subheader("Positive correlations")
-data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
+data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout', 'freetime'])
 #display(data_corr.corr())
 st.write(data_corr.corr())
 fig_corr1 = px.scatter_matrix(data_corr)
