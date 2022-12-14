@@ -585,15 +585,15 @@ st.write("You can find bot by this link t.me/Alcash1bot")
 st.code("logging.basicConfig(filename='bot.log', level=logging.INFO)")
 
 
-st.code("def dialog_sex(update, context):")
-st.code("    reply_keyboard = [['Мужской'], ['Женский']]")
-st.code("    update.message.reply_text(")
-st.code("        'Пожалуйста, выберите ваш пол:',")
-st.code("        reply_markup=ReplyKeyboardMarkup(")
-st.code("            reply_keyboard, one_time_keyboard=True)")
-st.code("    )")
+code = '''def dialog_sex(update, context):
+    reply_keyboard = [['Мужской'], ['Женский']]
+    update.message.reply_text(
+        'Пожалуйста, выберите ваш пол:',
+        reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, one_time_keyboard=True)
+    )
 
-st.code("    return 'time'")
+    return 'time'")
 
 
 def dialog_time(update, context):
@@ -687,9 +687,9 @@ def main():
     mybot.idle()
 
 
-#if __name__ == "__main__":
+#if __name__ == "__main__":'''
 #    main()
-
+st.code(code,language='python')
 # In[ ]:
 
 
