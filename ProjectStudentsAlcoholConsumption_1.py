@@ -292,9 +292,9 @@ st.write(a1)
 data_corr = pd.DataFrame(data=alcohol, columns=['Alc', 'failures', 'absences', 'age', 'health', 'sex', 'goout'])
 #display(data_corr.corr())
 st.write(data_corr.corr())
-fig_matrix = pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
+#pd.plotting.scatter_matrix(data_corr, figsize=(20, 10))
 #plt.show()
-st.plotly(fig_matrix)
+st.plotly(pd.plotting.scatter_matrix(data_corr, figsize=(20, 10)))
 
 # Hooray! There is a correlation and it is quite strong, let's visualize it!
 
