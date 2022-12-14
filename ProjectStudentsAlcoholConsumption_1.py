@@ -133,6 +133,7 @@ st.write("As we can see, the information presented in the table is complete and 
 
 #alcohol.info()
 st.write(alcohol.dtypes)
+st.write(alcohol.dtypes.count())
 st.write(alcohol.shape)
 #st.write(alcohol.info)
 
