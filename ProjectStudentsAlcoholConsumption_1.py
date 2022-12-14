@@ -291,7 +291,7 @@ fig.update_layout(
     yaxis_title="Number of the respondents",
     legend=dict(x=.5, xanchor="center", orientation="h"),
     margin=dict(l=0, r=0, t=30, b=0),
-    bargap=0.1,width=600, height=600)
+    bargap=0.1,width=300, height=600)
 # fig.update_traces(line_color='#0000ff', line_width=5)
 # fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
 # plt.fig(color='green')
