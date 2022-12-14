@@ -214,9 +214,7 @@ number_of_people_of_age = [alcohol[alcohol['age'] == 15].shape[0], alcohol[alcoh
                            alcohol[alcohol['age'] == 17].shape[0], alcohol[alcohol['age'] == 18].shape[0],
                            alcohol[alcohol['age'] == 19].shape[0], alcohol[alcohol['age'] == 20].shape[0],
                            alcohol[alcohol['age'] == 21].shape[0], alcohol[alcohol['age'] == 22].shape[0]]
-names_of_the_values = ['Number of people of age 15', 'Number of people of age 16', 'Number of people of age 17',
-                       'Number of people of age 18', 'Number of people of age 19', 'Number of people of age 20',
-                       'Number of people of age 21', 'Number of people of age 22']
+names_of_the_values = ['Number of people of age 15', 'Number of people of age 16', 'Number of people of age 17', 'Number of people of age 18', 'Number of people of age 19', 'Number of people of age 20','Number of people of age 21', 'Number of people of age 22']
 fig = px.bar(data, y=number_of_people_of_age, x=names_of_the_values, color=names_of_the_values)
 fig.update_layout(
     title="Distribution of people by age",
