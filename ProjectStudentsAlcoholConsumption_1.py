@@ -226,7 +226,7 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=30, b=0),
     bargap=0.2)
 # fig.show()
-st.plotly_chart(fig,use_container_width=True,theme="streamlit")
+st.plotly_chart(fig,use_container_width=True,theme="streamlit",secondaryBackgroundColor = "dark")
 
 # In[93]:
 
