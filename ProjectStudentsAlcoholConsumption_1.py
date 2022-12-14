@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-st.title("Student Alcohol Consumption")
+#st.subheader("Student Alcohol Consumption")
 
-st.subheader("Introduction")
-st.write("In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.")
+#st.subheader("Introduction")
+#st.write("In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.")
 # Here is a transcript of each of the values:
 # ### 1. school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira)
 # 2. sex - student's sex (binary: 'F' - female or 'M' - male)
@@ -70,7 +70,10 @@ import streamlit as st
 # from telegram.ext import (CommandHandler, ConversationHandler, Filters,
 #                          MessageHandler, Updater)
 # from telegram import ReplyKeyboardMarkup
+st.title("Student Alcohol Consumption")
 
+st.subheader("Introduction")
+st.write("In this project, I want to consider the impact of various factors on alcohol consumption by students, as well as the impact of alcohol consumption on student academic performance.")
 
 st.subheader("Let's see what data we will work with.")
 
