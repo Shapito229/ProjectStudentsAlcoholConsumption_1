@@ -131,8 +131,8 @@ st.write("As we can see, the information presented in the table is complete and 
 
 # In[84]:
 
-
-st.write(alcohol.info())
+#alcohol.info()
+st.info(alcohol)
 
 st.subheader("Data transformation")
 
