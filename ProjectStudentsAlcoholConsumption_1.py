@@ -133,7 +133,7 @@ st.write("As we can see, the information presented in the table is complete and 
 
 #alcohol.info()
 st.write(alcohol.dtypes)
-st.write(alcohol.dtypes.count())
+#st.write(alcohol.dtypes.count())
 st.write(alcohol.shape)
 #st.write(alcohol.info)
 
@@ -296,6 +296,7 @@ fig.update_layout(
 # fig.update_traces(marker_line_color='green', selector=dict(type='histogram'))
 # plt.fig(color='green')
 # fig.show()
+fig.update_xaxes(visible=True)
 st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("More detailed overview")
