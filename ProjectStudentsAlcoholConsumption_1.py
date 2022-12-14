@@ -564,7 +564,7 @@ fig = go.Figure(data=[go.Mesh3d(x=female['goout'],
                                 color='deeppink')])
 
 fig.update_layout(
-    scene=dict(xaxis_title='goouts',yaxis_title='freetime',zaxis_title='alcohol',
+    scene=dict(xaxis_title='goouts',yaxis_title='freetime',zaxis_title='alcohol consumption',
         xaxis=dict(nticks=4, range=[0, 5], ),
         yaxis=dict(nticks=4, range=[0, 5], ),
         zaxis=dict(nticks=4, range=[0, 5], ), ),
