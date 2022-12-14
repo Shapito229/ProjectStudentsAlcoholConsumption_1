@@ -121,37 +121,37 @@ st.subheader("Descriptive statistics")
 # In[86]:
 
 
-print(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
+#print(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
 st.write(f'Shape of the dataset: {alcohol.shape[0]} rows by {alcohol.shape[1]} columns')
 # In[87]:
 
 
-print('Number of girls:', alcohol[alcohol['sex'] == 0].shape[0])
-print('Number of boys:', alcohol[alcohol['sex'] == 1].shape[0])
+st.write('Number of girls:', alcohol[alcohol['sex'] == 0].shape[0])
+st.write('Number of boys:', alcohol[alcohol['sex'] == 1].shape[0])
 
 # In[88]:
 
 
-print('Number of people with internet at home:', alcohol[alcohol['internet'] == 'yes'].shape[0])
-print('Number of people without internet at home:', alcohol[alcohol['internet'] == 'no'].shape[0])
+st.write('Number of people with internet at home:', alcohol[alcohol['internet'] == 'yes'].shape[0])
+st.write('Number of people without internet at home:', alcohol[alcohol['internet'] == 'no'].shape[0])
 
 # In[89]:
 
 
-print('Number of people of age 15:', alcohol[alcohol['age'] == 15].shape[0])
-print('Number of people of age 16:', alcohol[alcohol['age'] == 16].shape[0])
-print('Number of people of age 17:', alcohol[alcohol['age'] == 17].shape[0])
-print('Number of people of age 18:', alcohol[alcohol['age'] == 18].shape[0])
-print('Number of people of age 19:', alcohol[alcohol['age'] == 19].shape[0])
-print('Number of people of age 20:', alcohol[alcohol['age'] == 20].shape[0])
-print('Number of people of age 21:', alcohol[alcohol['age'] == 21].shape[0])
-print('Number of people of age 22:', alcohol[alcohol['age'] == 22].shape[0])
+st.write('Number of people of age 15:', alcohol[alcohol['age'] == 15].shape[0])
+st.write('Number of people of age 16:', alcohol[alcohol['age'] == 16].shape[0])
+st.write('Number of people of age 17:', alcohol[alcohol['age'] == 17].shape[0])
+st.write('Number of people of age 18:', alcohol[alcohol['age'] == 18].shape[0])
+st.write('Number of people of age 19:', alcohol[alcohol['age'] == 19].shape[0])
+st.write('Number of people of age 20:', alcohol[alcohol['age'] == 20].shape[0])
+st.write('Number of people of age 21:', alcohol[alcohol['age'] == 21].shape[0])
+st.write('Number of people of age 22:', alcohol[alcohol['age'] == 22].shape[0])
 
 # In[90]:
 
 
 alcohol_anal = alcohol[['age', 'Alc', 'G3', 'famrel', 'freetime']].describe().drop(['25%', '50%', '75%'])
-alcohol_anal
+st.write(alcohol_anal)
 
 # In[91]:
 
